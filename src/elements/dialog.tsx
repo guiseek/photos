@@ -35,10 +35,10 @@ export class Dialog extends HTMLDialogElement {
 
           <div className="controls">
             <button id="prevBtn" onclick={() => carousel.scrollBy(-100, 0)}>
-              <img src="/arrow-left.svg" alt="arrow left" />
+              <img src="./arrow-left.svg" alt="arrow left" />
             </button>
             <button id="nextBtn" onclick={() => carousel.scrollBy(100, 0)}>
-              <img src="/arrow-right.svg" alt="arrow right" />
+              <img src="./arrow-right.svg" alt="arrow right" />
             </button>
           </div>
         </div>
@@ -47,7 +47,7 @@ export class Dialog extends HTMLDialogElement {
           className="closeDialog"
           onclick={() => props.closeDialog()}
         >
-          <img src="/close.svg" alt="close" />
+          <img src="./close.svg" alt="close" />
         </button>
       </>
     );
