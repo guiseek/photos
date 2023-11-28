@@ -1,9 +1,13 @@
-import { photos } from "./data/photos";
+import { album as photos } from "./data/album";
+import { Dialog, Banner } from "./elements";
 import { queryAll } from "./utilities";
-import { Dialog } from "./elements";
 
 export const app = () => {
   const dialog = new Dialog();
+  const banner = new Banner({
+    src: "./main.mp4",
+    width: 936,
+  });
 
   async function handleTransition(index: number) {
     const transition = document.startViewTransition(async () =>
@@ -12,9 +16,8 @@ export const app = () => {
     try {
       await transition.finished;
     } finally {
-      console.log(index);
-
-      queryAll("#carousel img").at(index)?.scrollIntoView();
+      const image = queryAll("#carousel img").at(index);
+      if (image) image.scrollIntoView();
     }
   }
 
@@ -26,13 +29,12 @@ export const app = () => {
   const openDialog = (index: number) => {
     if (!document.startViewTransition) {
       dialog.openDialog({ photos, closeDialog });
-    } else {
-      handleTransition(index);
-    }
+    } else handleTransition(index);
   };
 
   return (
     <>
+      <section className="banner">{banner}</section>
       <section>
         <div className="imageGallery">
           {photos.map((photo, idx) => (

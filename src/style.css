@@ -69,6 +69,11 @@ body {
   }
 }
 
+@layer components.video {
+  .banner {
+    margin-bottom: 4px;
+  }
+}
 @layer components.gallery {
   .imageGallery {
     display: grid;
@@ -107,7 +112,7 @@ body {
       border: none;
 
       &::after {
-        content: attr(data-time) " ";
+        content: " ";
         inset: 0;
         display: block;
         background-color: oklch(0 0 0 / 0.4);
@@ -130,11 +135,11 @@ body {
 @layer components.dialog {
   .dialog {
     --sm-font-size: 0.875rem;
-    --size: min(100dvh, 100%);
+    --size: min(80vh, 100%);
     --fade-duration: 1s;
 
     inline-size: var(--size);
-    max-inline-size: 934px;
+    /* max-inline-size: 934px; */
     border-radius: unset;
 
     padding: 0;
@@ -211,8 +216,12 @@ body {
       }
 
       & img {
-        inline-size: 100%;
-        block-size: 100%;
+        /* inline-size: 100%; */
+        object-fit: cover;
+        width: -webkit-fill-available;
+        /* height: -webkit-fill-available; */
+        /* object-fit: inherit; */
+        /* block-size: 100%; */
       }
 
       &::after {
