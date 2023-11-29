@@ -18,8 +18,6 @@ export class Carousel extends HTMLDialogElement {
   }
 
   async handleTransition(photos: Photo[], index: number) {
-    console.log(index);
-
     const transition = document.startViewTransition(async () =>
       this.openDialog({ photos, index })
     );
@@ -27,10 +25,7 @@ export class Carousel extends HTMLDialogElement {
       await transition.finished;
     } finally {
       const image = this.#getImages().at(index);
-      if (image) {
-        carousel.scrollBy(image.width * index, 0);
-        this.#width = image.width;
-      }
+      if (image) this.#width = image.width;
     }
   }
 
@@ -45,12 +40,12 @@ export class Carousel extends HTMLDialogElement {
     } else this.handleTransition(photos, index);
   }
 
-  openDialog(props: Props) {
+  openDialog({ photos, index }: Props) {
     this.clear();
 
     const carousel: HTMLDivElement = (
       <div className="carousel" id="carousel">
-        {props.photos.map((photo) => (
+        {photos.map((photo) => (
           <picture>
             <img src={photo.path} loading="lazy" />
           </picture>
@@ -90,6 +85,13 @@ export class Carousel extends HTMLDialogElement {
 
     this.append(template);
     this.showModal();
+
+    if (!this.#width) {
+      const image = this.#getImages().at(index);
+      if (image) this.#width = image.width;
+    }
+
+    carousel.scrollBy(this.#width * index, 0);
   }
 
   #getImages(): HTMLImageElement[] {

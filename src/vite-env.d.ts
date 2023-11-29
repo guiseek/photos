@@ -1,8 +1,6 @@
 /// <reference types="vite/client" />
 
 declare const main: HTMLElement;
-// declare const dialog: HTMLDialogElement;
-declare const carousel: HTMLDivElement;
 
 declare namespace JSX {
   type IntrinsicElements = {

@@ -163,7 +163,8 @@ body {
 
     .controls {
       position: fixed;
-      z-index: var(--layer-1);
+      /* z-index: var(--layer-1); */
+      z-index: 10000;
       inset-block-start: calc(50% - var(--size-5) / 2);
       inset-inline: var(--size-3);
       display: flex;

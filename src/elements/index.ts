@@ -1,2 +1,2 @@
 export * from './banner';
-export * from './dialog';
+export * from './carousel';
