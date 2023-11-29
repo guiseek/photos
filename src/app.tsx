@@ -7,12 +7,12 @@ export const app = () => {
     poster: "./main.jpg",
     src: "./main.mp4",
     preload: "auto",
-    width: 936,
+    width: 935,
   });
 
   return (
     <>
-      <section className="banner">{banner}</section>
+      <div className="banner">{banner}</div>
       <section>
         <div className="imageGallery">
           {photos.map((photo, index) => (

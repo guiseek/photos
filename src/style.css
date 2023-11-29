@@ -71,8 +71,11 @@ body {
 
 @layer components.video {
   .banner {
-    margin-bottom: 4px;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
+    max-width: 100%;
+    margin: 0 0 4px 0;
   }
 }
 @layer components.gallery {
