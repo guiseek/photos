@@ -16,7 +16,7 @@ export class Banner extends HTMLVideoElement {
     onUserActivation(
       (ua) => {
         if (ua.isActive && this.paused) {
-          this.scrollIntoView({ behavior: "smooth" });
+          // this.scrollIntoView({ behavior: "smooth" });
           this.focus();
           this.play();
         }
