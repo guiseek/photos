@@ -6,11 +6,11 @@ interface Props {
 }
 
 @builtIn("dialog")
-export class Dialog extends HTMLDialogElement {
+export class Carousel extends HTMLDialogElement {
   #width = 0;
 
   connectedCallback() {
-    this.classList.add("dialog");
+    this.classList.add("carousel");
   }
 
   clear() {
@@ -60,7 +60,7 @@ export class Dialog extends HTMLDialogElement {
 
     const template = (
       <>
-        <div className="dialogContainer">
+        <div className="carouselContainer">
           {carousel}
 
           <div className="controls">

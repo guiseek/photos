@@ -1,8 +1,8 @@
 import { album as photos } from "./data/album";
-import { Dialog, Banner } from "./elements";
+import { Carousel, Banner } from "./elements";
 
 export const app = () => {
-  const dialog = new Dialog();
+  const carousel = new Carousel();
   const banner = new Banner({
     poster: "./main.jpg",
     src: "./main.mp4",
@@ -16,7 +16,7 @@ export const app = () => {
       <section>
         <div className="imageGallery">
           {photos.map((photo, index) => (
-            <button onclick={() => dialog.select({ photos, index })}>
+            <button onclick={() => carousel.select({ photos, index })}>
               <figure>
                 <img src={photo.path} />
                 <figcaption>
@@ -28,7 +28,7 @@ export const app = () => {
           ))}
         </div>
 
-        {dialog}
+        {carousel}
       </section>
     </>
   );

@@ -1,7 +1,9 @@
-import { extend, onUserActivation } from "../utilities";
+import { delay, extend, onUserActivation } from "../utilities";
 
 @extend("banner", "video")
 export class Banner extends HTMLVideoElement {
+  #delayed = false;
+
   constructor(public props: Partial<Banner>) {
     super();
     Object.assign(this, props);
@@ -9,14 +11,16 @@ export class Banner extends HTMLVideoElement {
 
   connectedCallback() {
     this.onclick = () => {
-      if (this.paused) this.play();
-      else this.pause();
+      if (this.#delayed) {
+        if (this.paused) this.play();
+        else this.pause();
+      }
     };
 
     onUserActivation(
       (ua) => {
         if (ua.isActive && this.paused) {
-          // this.scrollIntoView({ behavior: "smooth" });
+          delay(() => (this.#delayed = true));
           this.focus();
           this.play();
         }
