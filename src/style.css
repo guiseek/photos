@@ -71,11 +71,15 @@ body {
 
 @layer components.video {
   .banner {
+    position: relative;
     display: flex;
     justify-content: center;
     cursor: pointer;
     max-width: 100%;
     margin: 0 0 4px 0;
+  }
+  .banner video {
+    max-width: 100%;
   }
 }
 @layer components.gallery {

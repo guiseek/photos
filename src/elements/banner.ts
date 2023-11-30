@@ -1,4 +1,10 @@
-import { delay, extend, onUserActivation } from "../utilities";
+import {
+  create,
+  delay,
+  extend,
+  interval,
+  onUserActivation,
+} from "../utilities";
 
 @extend("banner", "video")
 export class Banner extends HTMLVideoElement {
@@ -14,6 +20,7 @@ export class Banner extends HTMLVideoElement {
       if (this.#delayed) {
         if (this.paused) this.play();
         else this.pause();
+      } else {
       }
     };
 
@@ -30,6 +37,35 @@ export class Banner extends HTMLVideoElement {
       "touchend"
     );
 
+    const overlay = create("div", {
+      className: "bannerOverlay",
+      style: {
+        backgroundColor: "black",
+        position: "absolute",
+        opacity: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
+        top: 0,
+      },
+    });
+
+    this.onplay = () => {
+      this.volume = 0;
+
+      const $interval = interval(() => {
+        this.volume += 0.2;
+        if (this.volume === 1) {
+          $interval.cancel();
+        }
+      }, 200);
+
+      overlay.animate([{ opacity: 1 }, { opacity: 0.5 }, { opacity: 0 }], {
+        duration: 2000,
+        iterations: 1,
+      }).onfinish = () => overlay.remove();
+    };
+
     this.onended = () => {
       const { height } = getComputedStyle(this);
 
@@ -39,5 +75,9 @@ export class Banner extends HTMLVideoElement {
         iterations: 1,
       }).onfinish = () => this.remove();
     };
+
+    if (this.parentElement) {
+      this.parentElement.append(overlay);
+    }
   }
 }
